@@ -115,6 +115,10 @@ static void opapi_usr_optimize(void* userData, double* feedRate, double* spindle
 
 	/* radial width */
 	width = opapi_get_radial_width();
+	char s[50];
+	sprintf(s, "width is %f", width);
+	opapi_write_out_comment_line(s);
+	
 	/* axial depth */
 	depth = opapi_get_axial_depth();
 	/* volume removed */

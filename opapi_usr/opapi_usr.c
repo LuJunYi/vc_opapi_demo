@@ -19,6 +19,7 @@ static int opapi_usr_init(void* usrData)
 {
 
 	/* do initialization here */
+	//opapi_set_resolution(0.1);
 
 	return 1;
 }
@@ -59,7 +60,7 @@ static int opapi_usr_tool_change(void* userData)
 	}
 
 	/* set optimization resolution based on tool size */
-	distance = 1.0;
+	distance = 2;
 	opapi_set_resolution(distance);
 
 	return 1;
@@ -143,8 +144,12 @@ static void opapi_usr_optimize(void* userData, double* feedRate, double* spindle
 			if (fmod(i, map.numGridsX) == 0)
 			{
 				//printf("\n");
+				opapi_write_out_comment_line("numGridsX");
 			}
 			//printf("%d,", abs(bit_values[i]));
+			char s[50];
+			sprintf(s, "bit_values is %f", abs(bit_values[i]));
+			opapi_write_out_comment_line(s);
 		}
 	}
 
